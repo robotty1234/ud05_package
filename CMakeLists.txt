@@ -21,9 +21,10 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(stepper_interfaces REQUIRED)
 find_package(bipolar_stepper_package REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 add_executable(ud05_runnning src/ud05_runnning)
-ament_target_dependencies(ud05_runnning rclcpp std_msgs stepper_interfaces)
+ament_target_dependencies(ud05_runnning rclcpp std_msgs stepper_interfaces geometry_msgs)
 install(TARGETS ud05_runnning DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY cfg DESTINATION share/${PROJECT_NAME}/)
