@@ -25,5 +25,5 @@ def generate_launch_description():
         remappings=[('/stepperCmd', '/stepperCmdL'), ('/interrCmd', '/interrCmdL')],
         parameters=[join(pkg_prefix, 'cfg/left_motor_parameter.yaml')]
     )
-    return LaunchDescription([ud05_node, rightMotor, leftMotor])
+    return LaunchDescription([ud05_node, rightMotor, leftMotor ])
     

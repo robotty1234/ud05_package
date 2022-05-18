@@ -26,8 +26,8 @@ int main(int argc, char **argv){
     motorR.step_power = motorL.step_power = false;
     motorR.step_val = 1;
     motorL.step_val = -1;
-    sleep(5);
     cmd.data = "STOP";
+    sleep(2);
     RCLCPP_INFO(node->get_logger(), "Publishing motor data");
     RCLCPP_INFO(node->get_logger(), "motorR specify:%d, step_val:%d, step_speed:%f, step_power:%d", motorR.step_specify, motorR.step_val, motorR.step_speed, motorR.step_power);
     RCLCPP_INFO(node->get_logger(), "motorL specify:%d, step_val:%d, step_speed:%f, step_power:%d", motorL.step_specify, motorL.step_val, motorL.step_speed, motorL.step_power);

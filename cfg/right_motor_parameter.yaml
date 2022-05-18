@@ -1,4 +1,4 @@
-bipolar_stepper:
+RightMotor:
   ros__parameters:
     step_pin: 24
     dir_pin: 25
