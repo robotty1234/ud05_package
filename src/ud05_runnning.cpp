@@ -22,19 +22,35 @@ void teleope(const Twist::SharedPtr msgs){
     flug = true;
     float speed_R = msgs->linear.x;
     float speed_L = (-1) * msgs->linear.x;
-    RCLCPP_INFO(g_node->get_logger(), "speed_R:%f, speed_L:%f", speed_R, speed_L);
+    //RCLCPP_INFO(g_node->get_logger(), "speed_R:%f, speed_L:%f", speed_R, speed_L);
     //Plus:turn right Minuse:turn left
-    if((msgs->angular.z / 2.0) > 0.0){
-        g_motorR.step_speed -= (msgs->angular.z / 2.0);
-        g_motorR.step_speed += (msgs->angular.z / 2.0);
+    if(msgs->angular.z > 0.0){
+        if(msgs->linear.x == 0.0){
+            //Super-credit turn right
+            speed_R = msgs->angular.z;
+            speed_L = msgs->angular.z;
+            //RCLCPP_INFO(g_node->get_logger(), "Super-credit turn right");
+        }else{
+            //Turn right
+            speed_R = 0.0;
+            speed_L = msgs->angular.z;
+            //RCLCPP_INFO(g_node->get_logger(), "Turn right");
+        }
+    }else if(msgs->angular.z < 0.0){
+        if(msgs->linear.x == 0.0){
+            //Super-credit turn left
+            speed_R = msgs->angular.z;
+            speed_L = msgs->angular.z;
+            //RCLCPP_INFO(g_node->get_logger(), "Super-credit turn left");
+        }else{
+            //Turn left
+            speed_R = msgs->angular.z;
+            speed_L = 0.0;
+            //RCLCPP_INFO(g_node->get_logger(), "Turn left");
+        }
     }
-    else if((msgs->angular.z / 2.0) < 0.0){
-        g_motorR.step_speed += (msgs->angular.z / 2.0);
-        g_motorR.step_speed -= (msgs->angular.z / 2.0);
-    }
-    RCLCPP_INFO(g_node->get_logger(), "speed_R:%f, speed_L:%f", speed_R, speed_L);
     if(speed_R > 100.0){
-        speed_R = 100;
+        speed_R = 100.0;
     }
     else if(speed_R < -100.0){
         speed_R = -100.0;
@@ -45,6 +61,7 @@ void teleope(const Twist::SharedPtr msgs){
     else if(speed_L < -100.0){
         speed_L = -100.0;
     }
+    //RCLCPP_INFO(g_node->get_logger(), "speed_R:%f, speed_L:%f", speed_R, speed_L);
     if(speed_R > 0.0){
         g_motorR.step_val = 1;
         g_motorR.step_speed = speed_R;
