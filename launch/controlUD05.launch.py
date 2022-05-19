@@ -15,7 +15,7 @@ def generate_launch_description():
         package = 'bipolar_stepper_package',
         executable = 'bipolar_stepper',
         name = 'RightMotor',
-        #output = {'stdout' : 'log', 'stderr' : 'log'},
+        output = {'stdout' : 'log', 'stderr' : 'log'},
         remappings=[('/stepperCmd', '/stepperCmdR'), ('/interrCmd', '/interrCmdR')],
         parameters=[join(pkg_prefix, 'cfg/right_motor_parameter.yaml')]
     )
@@ -23,7 +23,7 @@ def generate_launch_description():
         package = 'bipolar_stepper_package',
         executable = 'bipolar_stepper',
         name = 'LeftMotor',
-        #output = {'stdout' : 'log', 'stderr' : 'log'},
+        output = {'stdout' : 'log', 'stderr' : 'log'},
         remappings=[('/stepperCmd', '/stepperCmdL'), ('/interrCmd', '/interrCmdL')],
         parameters=[join(pkg_prefix, 'cfg/left_motor_parameter.yaml')]
     )
