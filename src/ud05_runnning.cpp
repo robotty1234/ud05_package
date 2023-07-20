@@ -91,10 +91,8 @@ int main(int argc, char **argv){
     g_node = rclcpp::Node::make_shared("UD_05");
     //Set publisher
     //Right motor
-    auto pubCmdR = g_node ->create_publisher<std_msgs::msg::String>("interrCmdR", 10);
     auto pubStepperR = g_node->create_publisher<StepperMsgs>("stepperCmdR", 10);
     //Left motor
-    auto pubCmdL = g_node->create_publisher<std_msgs::msg::String>("interrCmdL", 10);
     auto pubStepperL = g_node->create_publisher<StepperMsgs>("stepperCmdL", 10);
     RCLCPP_INFO(g_node->get_logger(), "Start ud05 package");
     //Init value

@@ -16,7 +16,7 @@ def generate_launch_description():
         executable = 'bipolar_stepper',
         name = 'RightMotor',
         output = {'stdout' : 'log', 'stderr' : 'log'},
-        remappings=[('/stepperCmd', '/stepperCmdR'), ('/interrCmd', '/interrCmdR')],
+        remappings=[('/stepperCmd', '/stepperCmdR')],
         parameters=[join(pkg_prefix, 'cfg/right_motor_parameter.yaml')]
     )
     leftMotor = Node(
@@ -24,7 +24,7 @@ def generate_launch_description():
         executable = 'bipolar_stepper',
         name = 'LeftMotor',
         output = {'stdout' : 'log', 'stderr' : 'log'},
-        remappings=[('/stepperCmd', '/stepperCmdL'), ('/interrCmd', '/interrCmdL')],
+        remappings=[('/stepperCmd', '/stepperCmdL')],
         parameters=[join(pkg_prefix, 'cfg/left_motor_parameter.yaml')]
     )
     return LaunchDescription([ud05_node, rightMotor, leftMotor])
